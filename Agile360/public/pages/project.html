@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="shortcut icon"
+      href="./img/logo.ico"
+      type="image/x-icon"
+    />
+    <!-- CDNs -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"
+    ></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {},
+        },
+      };
+    </script>
+    <title>Create Project</title>
+  </head>
+  <body
+    class="bg-gradient-to-br from-green-300/30 via-gray-200 to-gray-200"
+  >
+    <div class="fixed -z-10 inset-0">
+      <img src="./img/greenbg.png" class="w-full" alt="" />
+    </div>
+    <section class="grid h-screen place-items-center">
+      <form
+        action=""
+        class="sm:w-1/2 md:w-2/5 w-4/5 rounded-md bg-gray-100/50 p-4 shadow-lg shadow-gray-500/50"
+      >
+        <h1 class="py-5 text-center text-3xl font-bold text-gray-800">
+          Create a Project
+        </h1>
+        <!-- Fields Container -->
+        <div class="space-y-6">
+          <!-- Project Name -->
+          <div>
+            <label class="flex flex-col gap-2" for="name"
+              ><p class="text-sm text-gray-600">
+                Project Name<span class="pl-1 text-red-600">*</span>
+              </p>
+              <input
+                required
+                id="name"
+                placeholder="Team in Space"
+                type="text"
+                class="rounded-md px-2 py-1 text-sm text-green-800 placeholder:text-xs placeholder:text-gray-400 focus:border-none focus:outline-none"
+            /></label>
+          </div>
+
+          <!-- Project id & key container -->
+          <div
+            class="flex flex-col items-stretch justify-between gap-4 lg:flex-row"
+          >
+            <!-- Project ID -->
+            <div class="w-full">
+              <label class="flex flex-col gap-2" for="id"
+                ><p class="text-sm text-gray-600">
+                  Team Leader Id<span class="pl-1 text-red-600"
+                    >*</span
+                  >
+                </p>
+                <input
+                  required
+                  id="id"
+                  placeholder="Enter project ID"
+                  type="tel"
+                  class="rounded-md px-2 py-1 text-sm text-green-800 placeholder:text-xs placeholder:text-gray-400 focus:border-none focus:outline-none"
+              /></label>
+            </div>
+
+            <!-- Project Key -->
+            <div class="w-full">
+              <label class="flex flex-col gap-2" for="key"
+                ><p class="text-sm text-gray-600">
+                  Project Key<span class="pl-1 text-red-600">*</span>
+                </p>
+                <input
+                  required
+                  id="key"
+                  placeholder="Eg. AT (for Atlassian)"
+                  type="text"
+                  class="rounded-md px-2 py-1 text-sm text-green-800 placeholder:text-xs placeholder:text-gray-400 focus:border-none focus:outline-none"
+              /></label>
+            </div>
+          </div>
+
+          <!-- Project Description -->
+          <div>
+            <label class="flex flex-col gap-2" for="description"
+              ><p class="text-sm text-gray-600">
+                Description<span class="pl-1 text-red-600">*</span>
+              </p>
+              <textarea
+                placeholder="Advancing Humanity into Cosmos!"
+                class="rounded-md px-2 py-1 text-sm text-green-800 placeholder:text-xs placeholder:text-gray-400 focus:border-none focus:outline-none"
+                id="description"
+                rows="3"
+                cols="50"
+                maxlength="200"
+              ></textarea>
+            </label>
+          </div>
+
+          <!-- Project Avatar -->
+          <div>
+            <label class="flex flex-col gap-2" for="avatar"
+              ><p class="text-sm text-gray-600">
+                Project Avatar<span class="pl-1 text-red-600">*</span>
+              </p>
+              <div class="flex items-center gap-2">
+                <img
+                  src="https://static.vecteezy.com/system/resources/previews/006/541/492/original/cartoon-rocket-isolated-on-a-white-background-rocket-icon-symbol-for-your-logo-app-and-website-design-illustration-free-vector.jpg"
+                  class="w-10 rounded-full object-contain object-center"
+                  alt=""
+                />
+                <input
+                  required
+                  id="avatar"
+                  type="file"
+                  class="cursor-pointer rounded-md px-2 py-1 text-sm text-green-800 placeholder:text-xs placeholder:text-gray-400 focus:border-none focus:outline-none"
+                />
+              </div>
+            </label>
+          </div>
+
+          <!-- Submit and cancel button container -->
+          <div class="flex items-center justify-end">
+            <div class="flex gap-2">
+              <button
+                type="submit"
+                class="rounded-md bg-green-500 px-4 py-2 text-sm text-white hover:bg-green-600"
+              >
+                Create Project
+              </button>
+
+              <button
+                type="reset"
+                class="px-4 text-sm text-gray-600 decoration-green-600 transition-all duration-300 hover:text-gray-900 hover:underline hover:underline-offset-4"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>

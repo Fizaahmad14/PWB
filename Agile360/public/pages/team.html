@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="shortcut icon"
+      href="./img/logo.ico"
+      type="image/x-icon"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Create Team</title>
+  </head>
+  <body
+    class="bg-gradient-to-br from-green-300/30 via-gray-200 to-gray-200"
+  >
+    <div class="fixed -z-10 inset-0">
+      <img src="./img/greenbg.png" class="w-full" alt="" />
+    </div>
+    <section class="grid h-screen place-items-center">
+      <form
+        action=""
+        class="sm:w-1/2 md:w-2/5 w-4/5 rounded-md bg-gray-100/50 p-4 shadow-lg shadow-gray-500/50"
+      >
+        <h1 class="py-5 text-center text-3xl font-bold text-gray-800">
+          Create a Team
+        </h1>
+        <!-- Fields Container -->
+        <div class="space-y-6">
+          <!-- Team Name -->
+          <div>
+            <label class="flex flex-col gap-2" for="name"
+              ><p class="text-sm text-gray-600">
+                Team Name<span class="pl-1 text-red-600">*</span>
+              </p>
+              <input
+                required
+                id="name"
+                placeholder="Team in Space"
+                type="text"
+                class="rounded-md px-2 py-1 text-sm text-green-800 placeholder:text-xs placeholder:text-gray-400 focus:border-none focus:outline-none"
+            /></label>
+          </div>
+
+          <!-- Team Associated Issue Source -->
+          <div>
+            <label class="flex flex-col gap-2" for="issue"
+              ><p class="text-sm text-gray-600">
+                Associated Issue Source<span class="pl-1 text-red-600"
+                  >*</span
+                >
+              </p>
+              <select
+                class="rounded-md px-2 py-1 text-sm text-green-800 placeholder:text-xs placeholder:text-gray-400 focus:border-none focus:outline-none"
+                name="issue-select"
+                id="issue"
+              >
+                <option class="text-green-800" value="">
+                  Choose a board or project
+                </option>
+                <option class="text-green-800" value="project1">
+                  Project 1
+                </option>
+                <option class="text-green-800" value="project2">
+                  Project 2
+                </option>
+                <option class="text-green-800" value="project3">
+                  Project 3
+                </option>
+              </select>
+            </label>
+          </div>
+
+          <!-- Team Type -->
+          <div>
+            <label class="flex flex-col gap-2" for="type"
+              ><p class="text-sm text-gray-600">
+                Team Type<span class="pl-1 text-red-600">*</span>
+              </p>
+              <select
+                class="rounded-md px-2 py-1 text-sm text-green-800 placeholder:text-xs placeholder:text-gray-400 focus:border-none focus:outline-none"
+                name="type-select"
+                id="type"
+              >
+                <option class="text-green-800" value="">
+                  Choose a team type
+                </option>
+                <option class="text-green-800" value="srum">
+                  Scrum
+                </option>
+                <option class="text-green-800" value="brum">
+                  Brum
+                </option>
+                <option class="text-green-800" value="prum">
+                  Prum
+                </option>
+              </select>
+            </label>
+          </div>
+
+          <!-- Team velocity & iteration length -->
+          <div
+            class="flex flex-col items-stretch justify-between gap-4 lg:flex-row"
+          >
+            <!-- Team Velcity -->
+            <div class="w-full">
+              <label class="flex flex-col gap-2" for="id"
+                ><p class="text-sm text-gray-600">
+                  Velocity (pts)<span class="pl-1 text-red-600"
+                    >*</span
+                  >
+                </p>
+                <input
+                  required
+                  id="id"
+                  placeholder="30"
+                  type="tel"
+                  class="rounded-md px-2 py-1 text-sm text-green-800 placeholder:text-xs placeholder:text-gray-400 focus:border-none focus:outline-none"
+              /></label>
+            </div>
+
+            <!-- Team iteration length -->
+            <div class="w-full">
+              <label class="flex flex-col gap-2" for="key"
+                ><p class="text-sm text-gray-600">
+                  Iteration Length (weeks)<span
+                    class="pl-1 text-red-600"
+                    >*</span
+                  >
+                </p>
+                <input
+                  required
+                  id="key"
+                  placeholder="2"
+                  type="text"
+                  class="rounded-md px-2 py-1 text-sm text-green-800 placeholder:text-xs placeholder:text-gray-400 focus:border-none focus:outline-none"
+              /></label>
+            </div>
+          </div>
+
+          <!-- Team members -->
+          <div>
+            <label class="flex flex-col gap-2" for="members"
+              ><p class="text-sm text-gray-600">
+                Team members<span class="pl-1 text-red-600">*</span>
+              </p>
+              <input
+                required
+                id="members"
+                placeholder="Enter the number of team members"
+                maxlength="1"
+                type="tel"
+                class="rounded-md px-2 py-1 text-sm text-green-800 placeholder:text-xs placeholder:text-gray-400 focus:border-none focus:outline-none"
+            /></label>
+          </div>
+
+          <!-- Submit and cancel button container -->
+          <div class="flex items-center justify-end">
+            <div class="flex gap-2">
+              <button
+                type="submit"
+                class="rounded-md bg-green-500 px-4 py-2 text-sm text-white hover:bg-green-600"
+              >
+                Create Team
+              </button>
+
+              <button
+                type="reset"
+                class="px-4 text-sm text-gray-600 decoration-green-600 transition-all duration-300 hover:text-gray-900 hover:underline hover:underline-offset-4"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>
