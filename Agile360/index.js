@@ -19,11 +19,12 @@ app.post('/login.html', (req, res) => {
       console.error('Error checking user credentials:', error);
       res.send('An error occurred');
     } else if (user !== null) {
-      res.send('login successful');
-     // res.redirect('/dashboard.html');
+      //res.send('login successful');
+      res.redirect('/dashboard.html');
       console.log('Login successful');
     } else {
     //  res.redirect('/login.html');
+      res.redirect('/login.html');
       console.log('Wrong username or password');
     }
   });
@@ -50,7 +51,7 @@ app.post('/signup.html', function (req, res) {
     connection.query(sql, function (err, result) {
       if (err) throw err
       console.log('Row has been updated')
-      res.redirect('/')
+      res.redirect('/dashboard.html')
     })
 })
 app.use(express.static('public/pages'));

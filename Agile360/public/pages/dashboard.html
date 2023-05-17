@@ -12,7 +12,7 @@
       href="./img/logo.ico"
       type="image/x-icon"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
     <!-- CDNs -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css"
@@ -26,148 +26,1423 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
+        darkMode: "class",
         theme: {
-          extend: {},
+          extend: {
+            colors: {
+              primary: {
+                50: "#f0fdf4",
+                100: "#dcfce7",
+                200: "#bbf7d0",
+                300: "#86efac",
+                400: "#4ade80",
+                500: "#22c55e",
+                600: "#16a34a",
+                700: "#15803d",
+                800: "#166534",
+                900: "#14532d",
+              },
+            },
+          },
         },
       };
     </script>
-    <title>Login</title>
+    <script>
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+    <script defer src="./scripts/darkMode.js"></script>
+    <title>Dashboard</title>
   </head>
-  <body
-    class="bg-gradient-to-br from-green-300/50 via-gray-200 to-green-300/50"
-  >
-    <!-- fixed Background -->
-    <div
-      class="fixed hidden md:flex -z-10 inset-0 items-end justify-between"
-    >
-      <!-- <img src="./img/greenbg.png" class="w-full" alt="" /> -->
-      <img
-        src="./img/login1.svg"
-        class="w-1/3 object-cover"
-        alt=""
-      />
-      <img
-        src="./img/login2.svg"
-        class="w-1/3 object-cover"
-        alt=""
-      />
-    </div>
-    <section class="grid place-items-center">
-      <div class="flex justify-center items-center gap-3 py-10">
-        <img src="./img/logo.ico" class="w-16" alt="" />
-        <h1 class="text-5xl text-gray-800 font-bold">
-          Agile<sup class="text-xl">360</sup>
-        </h1>
-      </div>
-      <form
-        action=""
-        class="sm:w-1/2 md:w-[35%] bg-white/50 w-4/5 rounded-md p-6 mb-10 shadow-lg shadow-gray-500/50"
-      >
-        <h2 class="py-3 text-center text-lg font-bold text-gray-800">
-          Log in to Agile<sup class="text-xs">360</sup>
-        </h2>
-        <!-- Fields Container -->
-        <div class="space-y-4">
-          <!-- Email -->
-          <div>
-            <label class="flex flex-col gap-2" for="email"
-              ><p class="text-sm text-gray-600">
-                Email<span class="pl-1 text-red-600">*</span>
-              </p>
-              <input
-                required
-                id="email"
-                type="email"
-                class="rounded-md px-2 py-1 text-sm text-green-800 placeholder:text-xs placeholder:text-gray-400 focus:border-none focus:outline-none"
-            /></label>
-          </div>
-
-          <!-- Password -->
-          <div>
-            <label class="flex flex-col gap-2" for="password"
-              ><p class="text-sm text-gray-600">
-                Password<span class="pl-1 text-red-600">*</span>
-              </p>
-              <input
-                required
-                id="password"
-                type="password"
-                class="rounded-md px-2 py-1 text-sm text-green-800 placeholder:text-xs placeholder:text-gray-400 focus:border-none focus:outline-none"
-            /></label>
-          </div>
-
-          <!-- Submit Button   -->
-          <button
-            type="submit"
-            class="rounded-md font-bold bg-green-500 px-4 w-full py-2 text-sm text-white hover:bg-green-600"
+  <body class="bg-white dark:bg-gray-800">
+    <div class="antialiased bg-gray-50 dark:bg-gray-900">
+      <header>
+        <nav
+          class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-40"
+        >
+          <div
+            class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl"
           >
-            Continue
+            <div class="flex">
+              <button
+                data-drawer-target="drawer-navigation"
+                data-drawer-toggle="drawer-navigation"
+                aria-controls="drawer-navigation"
+                class="p-2 mr-2 text-gray-600 rounded-lg cursor-pointer md:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <svg
+                  aria-hidden="true"
+                  class="hidden w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="sr-only">Toggle sidebar</span>
+              </button>
+              <!-- Logo -->
+              <a href="work.html" class="flex items-center">
+                <img
+                  src="./img/logo.ico"
+                  class="mr-3 w-12"
+                  alt="Agile360 Logo"
+                />
+                <span
+                  class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
+                  >Agile<sup>360</sup></span
+                >
+              </a>
+            </div>
+
+            <!-- Dark Mode Button, User Button, Hamburger -->
+            <div class="flex gap-3 items-center lg:order-2">
+              <!-- Dark Mode Button -->
+              <button
+                id="theme-toggle"
+                type="button"
+                class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
+              >
+                <svg
+                  id="theme-toggle-dark-icon"
+                  class="hidden w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                  ></path>
+                </svg>
+                <svg
+                  id="theme-toggle-light-icon"
+                  class="hidden w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+
+              <!-- User Button -->
+              <button
+                id="dropdownDefaultButton"
+                data-dropdown-toggle="dropdown"
+                class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium text-sm p-1 rounded-full text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                type="button"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+              </button>
+              <!-- Dropdown menu -->
+              <div
+                id="dropdown"
+                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+              >
+                <ul
+                  class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                  aria-labelledby="dropdownDefaultButton"
+                >
+                  <li>
+                    <a
+                      href="dashboard.html"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >Dashboard</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >Settings</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >Reports</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >Sign out</a
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <button
+                data-collapse-toggle="mobile-menu-2"
+                type="button"
+                class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                aria-controls="mobile-menu-2"
+                aria-expanded="false"
+              >
+                <span class="sr-only">Open main menu</span>
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <svg
+                  class="hidden w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Navigation List -->
+            <div
+              class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+              id="mobile-menu-2"
+            >
+              <ul
+                class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0"
+              >
+                <!-- Your Work -->
+                <li>
+                  <a
+                    href="work.html"
+                    class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    aria-current="page"
+                    >Your Work</a
+                  >
+                </li>
+
+                <!-- Dashboard -->
+                <li>
+                  <a
+                    href="dashboard.html"
+                    class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    >Dashboard</a
+                  >
+                </li>
+
+                <!-- Projects  -->
+                <li>
+                  <button
+                    id="dropdownDefaultButton1"
+                    data-dropdown-toggle="dropdown1"
+                    class="inline-flex items-center justify-between w-full py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    type="button"
+                  >
+                    Projects
+                    <svg
+                      class="w-4 h-4 ml-2"
+                      aria-hidden="true"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      ></path>
+                    </svg>
+                  </button>
+                  <!-- Dropdown menu -->
+                  <div
+                    id="dropdown1"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                  >
+                    <ul
+                      class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                      aria-labelledby="dropdownDefaultButton1"
+                    >
+                      <li>
+                        <button
+                          id="defaultModalButton"
+                          data-modal-toggle="defaultModal"
+                          class="block px-4 py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                          Create New Project
+                        </button>
+                      </li>
+                      <hr />
+                      <li>
+                        <a
+                          href="#"
+                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >Project 1</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >Project 2</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >Project 3</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
+                <!-- Teams  -->
+                <li>
+                  <button
+                    id="dropdownDefaultButton2"
+                    data-dropdown-toggle="dropdown2"
+                    class="inline-flex items-center justify-between w-full py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                    type="button"
+                  >
+                    Teams
+                    <svg
+                      class="w-4 h-4 ml-2"
+                      aria-hidden="true"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      ></path>
+                    </svg>
+                  </button>
+                  <!-- Dropdown menu -->
+                  <div
+                    id="dropdown2"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+                  >
+                    <ul
+                      class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                      aria-labelledby="dropdownDefaultButton2"
+                    >
+                      <li>
+                        <button
+                          id="defaultModalButton1"
+                          data-modal-toggle="defaultModal1"
+                          class="block w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                          Create New Team
+                        </button>
+                      </li>
+                      <hr />
+                      <li>
+                        <a
+                          href="#"
+                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >Team 1</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >Team 2</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >Team 3</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Sidebar -->
+
+      <aside
+        class="fixed top-0 left-0 z-30 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        aria-label="Sidenav"
+        id="drawer-navigation"
+      >
+        <div
+          class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800"
+        >
+          <!-- <form action="#" method="GET" class="md:hidden mb-2">
+            <label for="sidebar-search" class="sr-only">Search</label>
+            <div class="relative">
+              <div
+                class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                type="text"
+                name="search"
+                id="sidebar-search"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                placeholder="Search"
+              />
+            </div>
+          </form> -->
+          <ul class="space-y-2">
+            <li>
+              <a
+                href="#"
+                class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"
+                  ></path>
+                  <path
+                    d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"
+                  ></path>
+                </svg>
+                <span class="ml-3">Overview</span>
+              </a>
+            </li>
+            <li>
+              <button
+                type="button"
+                class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                aria-controls="dropdown-pages"
+                data-collapse-toggle="dropdown-pages"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="flex-1 ml-3 text-left whitespace-nowrap"
+                  >Pages</span
+                >
+                <svg
+                  aria-hidden="true"
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <ul id="dropdown-pages" class="hidden py-2 space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    >Settings</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    >Kanban</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    >Calendar</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <button
+                type="button"
+                class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                aria-controls="dropdown-sales"
+                data-collapse-toggle="dropdown-sales"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="flex-1 ml-3 text-left whitespace-nowrap"
+                  >Sales</span
+                >
+                <svg
+                  aria-hidden="true"
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <ul id="dropdown-sales" class="hidden py-2 space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    >Products</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    >Billing</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    >Invoice</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8.707 7.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2a1 1 0 00-1.414-1.414L11 7.586V3a1 1 0 10-2 0v4.586l-.293-.293z"
+                  ></path>
+                  <path
+                    d="M3 5a2 2 0 012-2h1a1 1 0 010 2H5v7h2l1 2h4l1-2h2V5h-1a1 1 0 110-2h1a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"
+                  ></path>
+                </svg>
+                <span class="flex-1 ml-3 whitespace-nowrap"
+                  >Messages</span
+                >
+                <span
+                  class="inline-flex justify-center items-center w-5 h-5 text-xs font-semibold rounded-full text-primary-800 bg-primary-100 dark:bg-primary-200 dark:text-primary-800"
+                >
+                  4
+                </span>
+              </a>
+            </li>
+            <li>
+              <button
+                type="button"
+                class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                aria-controls="dropdown-authentication"
+                data-collapse-toggle="dropdown-authentication"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="flex-1 ml-3 text-left whitespace-nowrap"
+                  >Authentication</span
+                >
+                <svg
+                  aria-hidden="true"
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+              <ul
+                id="dropdown-authentication"
+                class="hidden py-2 space-y-2"
+              >
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    >Sign In</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    >Sign Up</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    >Forgot Password</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <ul
+            class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700"
+          >
+            <li>
+              <a
+                href="#"
+                class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                  <path
+                    fill-rule="evenodd"
+                    d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="ml-3">Docs</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"
+                  ></path>
+                </svg>
+                <span class="ml-3">Components</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.668 2.754l-1.524-1.525a3.997 3.997 0 00.078-2.183l1.562-1.562C15.802 8.249 16 9.1 16 10zm-5.165 3.913l1.58 1.58A5.98 5.98 0 0110 16a5.976 5.976 0 01-2.516-.552l1.562-1.562a4.006 4.006 0 001.789.027zm-4.677-2.796a4.002 4.002 0 01-.041-2.08l-.08.08-1.53-1.533A5.98 5.98 0 004 10c0 .954.223 1.856.619 2.657l1.54-1.54zm1.088-6.45A5.974 5.974 0 0110 4c.954 0 1.856.223 2.657.619l-1.54 1.54a4.002 4.002 0 00-2.346.033L7.246 4.668zM12 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="ml-3">Help</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="hidden absolute bottom-0 left-0 justify-center p-4 space-x-4 w-full lg:flex bg-white dark:bg-gray-800 z-20"
+        >
+          <a
+            href="#"
+            class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-600"
+          >
+            <svg
+              aria-hidden="true"
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"
+              ></path>
+            </svg>
+          </a>
+          <a
+            href="#"
+            data-tooltip-target="tooltip-settings"
+            class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600"
+          >
+            <svg
+              aria-hidden="true"
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </a>
+          <div
+            id="tooltip-settings"
+            role="tooltip"
+            class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip"
+          >
+            Settings page
+            <div class="tooltip-arrow" data-popper-arrow></div>
+          </div>
+          <button
+            type="button"
+            data-dropdown-toggle="language-dropdown"
+            class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer dark:hover:text-white dark:text-gray-400 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600"
+          >
+            <svg
+              aria-hidden="true"
+              class="h-5 w-5 rounded-full mt-0.5"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 3900 3900"
+            >
+              <path fill="#b22234" d="M0 0h7410v3900H0z" />
+              <path
+                d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0"
+                stroke="#fff"
+                stroke-width="300"
+              />
+              <path fill="#3c3b6e" d="M0 0h2964v2100H0z" />
+              <g fill="#fff">
+                <g id="d">
+                  <g id="c">
+                    <g id="e">
+                      <g id="b">
+                        <path
+                          id="a"
+                          d="M247 90l70.534 217.082-184.66-134.164h228.253L176.466 307.082z"
+                        />
+                        <use xlink:href="#a" y="420" />
+                        <use xlink:href="#a" y="840" />
+                        <use xlink:href="#a" y="1260" />
+                      </g>
+                      <use xlink:href="#a" y="1680" />
+                    </g>
+                    <use xlink:href="#b" x="247" y="210" />
+                  </g>
+                  <use xlink:href="#c" x="494" />
+                </g>
+                <use xlink:href="#d" x="988" />
+                <use xlink:href="#c" x="1976" />
+                <use xlink:href="#e" x="2470" />
+              </g>
+            </svg>
           </button>
+          <!-- Dropdown -->
+          <div
+            class="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
+            id="language-dropdown"
+          >
+            <ul class="py-1" role="none">
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:text-white dark:text-gray-300 dark:hover:bg-gray-600"
+                  role="menuitem"
+                >
+                  <div class="inline-flex items-center">
+                    <svg
+                      aria-hidden="true"
+                      class="h-3.5 w-3.5 rounded-full mr-2"
+                      xmlns="http://www.w3.org/2000/svg"
+                      id="flag-icon-css-us"
+                      viewBox="0 0 512 512"
+                    >
+                      <g fill-rule="evenodd">
+                        <g stroke-width="1pt">
+                          <path
+                            fill="#bd3d44"
+                            d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
+                            transform="scale(3.9385)"
+                          />
+                          <path
+                            fill="#fff"
+                            d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
+                            transform="scale(3.9385)"
+                          />
+                        </g>
+                        <path
+                          fill="#192f5d"
+                          d="M0 0h98.8v70H0z"
+                          transform="scale(3.9385)"
+                        />
+                        <path
+                          fill="#fff"
+                          d="M8.2 3l1 2.8H12L9.7 7.5l.9 2.7-2.4-1.7L6 10.2l.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7L74 8.5l-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 7.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 24.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 21.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 38.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 35.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 52.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 49.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 66.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 63.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9z"
+                          transform="scale(3.9385)"
+                        />
+                      </g>
+                    </svg>
+                    English (US)
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-600"
+                  role="menuitem"
+                >
+                  <div class="inline-flex items-center">
+                    <svg
+                      aria-hidden="true"
+                      class="h-3.5 w-3.5 rounded-full mr-2"
+                      xmlns="http://www.w3.org/2000/svg"
+                      id="flag-icon-css-de"
+                      viewBox="0 0 512 512"
+                    >
+                      <path fill="#ffce00" d="M0 341.3h512V512H0z" />
+                      <path d="M0 0h512v170.7H0z" />
+                      <path fill="#d00" d="M0 170.7h512v170.6H0z" />
+                    </svg>
+                    Deutsch
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-600"
+                  role="menuitem"
+                >
+                  <div class="inline-flex items-center">
+                    <svg
+                      aria-hidden="true"
+                      class="h-3.5 w-3.5 rounded-full mr-2"
+                      xmlns="http://www.w3.org/2000/svg"
+                      id="flag-icon-css-it"
+                      viewBox="0 0 512 512"
+                    >
+                      <g fill-rule="evenodd" stroke-width="1pt">
+                        <path fill="#fff" d="M0 0h512v512H0z" />
+                        <path fill="#009246" d="M0 0h170.7v512H0z" />
+                        <path
+                          fill="#ce2b37"
+                          d="M341.3 0H512v512H341.3z"
+                        />
+                      </g>
+                    </svg>
+                    Italiano
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:text-white dark:text-gray-300 dark:hover:bg-gray-600"
+                  role="menuitem"
+                >
+                  <div class="inline-flex items-center">
+                    <svg
+                      aria-hidden="true"
+                      class="h-3.5 w-3.5 rounded-full mr-2"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      id="flag-icon-css-cn"
+                      viewBox="0 0 512 512"
+                    >
+                      <defs>
+                        <path
+                          id="a"
+                          fill="#ffde00"
+                          d="M1-.3L-.7.8 0-1 .6.8-1-.3z"
+                        />
+                      </defs>
+                      <path fill="#de2910" d="M0 0h512v512H0z" />
+                      <use
+                        width="30"
+                        height="20"
+                        transform="matrix(76.8 0 0 76.8 128 128)"
+                        xlink:href="#a"
+                      />
+                      <use
+                        width="30"
+                        height="20"
+                        transform="rotate(-121 142.6 -47) scale(25.5827)"
+                        xlink:href="#a"
+                      />
+                      <use
+                        width="30"
+                        height="20"
+                        transform="rotate(-98.1 198 -82) scale(25.6)"
+                        xlink:href="#a"
+                      />
+                      <use
+                        width="30"
+                        height="20"
+                        transform="rotate(-74 272.4 -114) scale(25.6137)"
+                        xlink:href="#a"
+                      />
+                      <use
+                        width="30"
+                        height="20"
+                        transform="matrix(16 -19.968 19.968 16 256 230.4)"
+                        xlink:href="#a"
+                      />
+                    </svg>
+                    中文 (繁體)
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
 
-          <p class="text-gray-400 text-sm text-center">OR</p>
+      <main class="p-4 md:ml-64 h-auto pt-20">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4"
+        >
+          <div
+            class="border-2 border-dashed border-gray-300 rounded-lg dark:border-gray-600 h-32 md:h-64"
+          ></div>
+          <div
+            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"
+          ></div>
+          <div
+            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"
+          ></div>
+          <div
+            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-32 md:h-64"
+          ></div>
+        </div>
+        <div
+          class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"
+        ></div>
+        <div class="grid grid-cols-2 gap-4 mb-4">
+          <div
+            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+          ></div>
+          <div
+            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+          ></div>
+          <div
+            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+          ></div>
+          <div
+            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+          ></div>
+        </div>
+        <div
+          class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-96 mb-4"
+        ></div>
+        <div class="grid grid-cols-2 gap-4">
+          <div
+            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+          ></div>
+          <div
+            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+          ></div>
+          <div
+            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+          ></div>
+          <div
+            class="border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 h-48 md:h-72"
+          ></div>
+        </div>
+      </main>
+    </div>
 
-          <!-- other logins container -->
-          <div class="space-y-4">
-            <!-- Google -->
+    <!-- --------------------------------------------------------- -->
+    <!-- Create New Project & Create New Team Modals -->
+    <!-- Project modal -->
+    <div
+      id="defaultModal"
+      tabindex="-1"
+      aria-hidden="true"
+      class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full"
+    >
+      <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <!-- Modal content -->
+        <div
+          class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5"
+        >
+          <!-- Modal header -->
+          <div
+            class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600"
+          >
+            <h3
+              class="text-lg font-semibold text-gray-900 dark:text-white"
+            >
+              Create Project
+            </h3>
             <button
               type="button"
-              x
-              class="w-full rounded-md shadow-sm hover:shadow-md transition-all shadow-gray-400/50 hover:bg-gray-100 py-2 flex gap-2 items-center justify-center"
+              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+              data-modal-toggle="defaultModal"
             >
-              <img src="./img/Google.svg" class="w-5" alt="" />
-              <p class="text-sm text-gray-600 font-bold">
-                Continue with Google
-              </p>
-            </button>
-
-            <!-- Github -->
-            <button
-              type="button"
-              x
-              class="w-full rounded-md shadow-sm hover:shadow-md transition-all shadow-gray-400/50 hover:bg-gray-100 py-2 flex gap-2 items-center justify-center"
-            >
-              <img src="./img/GitHub.svg" class="w-5" alt="" />
-              <p class="text-sm text-gray-600 font-bold">
-                Continue with Github
-              </p>
-            </button>
-
-            <!-- Slack -->
-            <button
-              type="button"
-              x
-              class="w-full rounded-md shadow-sm hover:shadow-md transition-all shadow-gray-400/50 hover:bg-gray-100 py-2 flex gap-2 items-center justify-center"
-            >
-              <img src="./img/Slack.svg" class="w-5" alt="" />
-              <p class="text-sm text-gray-600 font-bold">
-                Continue with Slack
-              </p>
-            </button>
-
-            <!-- Apple -->
-            <button
-              type="button"
-              x
-              class="w-full rounded-md shadow-sm hover:shadow-md transition-all shadow-gray-400/50 hover:bg-gray-100 py-2 flex gap-2 items-center justify-center"
-            >
-              <img src="./img/Apple.svg" class="w-5" alt="" />
-              <p class="text-sm text-gray-600 font-bold">
-                Continue with Slack
-              </p>
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <span class="sr-only">Close modal</span>
             </button>
           </div>
-          <hr />
+          <!-- Modal body -->
+          <form action="#" class="space-y-4">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <!-- Project Name -->
+              <div class="sm:col-span-2">
+                <label
+                  for="name"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Project Name<span class="pl-1 text-red-600"
+                    >*</span
+                  ></label
+                >
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  placeholder="Team in Space"
+                  required
+                />
+              </div>
 
-          <!-- SignUp -->
-          <button class="w-full" type="button">
-            <a
-              href="signup.html"
-              class="px-4 text-sm text-center w-full text-gray-600 decoration-green-600 transition-all underline duration-300 hover:text-black hover:decoration-2"
-              >SignUp for an account</a
-            >
-          </button>
+              <!-- Project Team Leader Id -->
+              <div>
+                <label
+                  for="leaderId"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Team Leader Id<span class="pl-1 text-red-600"
+                    >*</span
+                  ></label
+                >
+                <input
+                  type="tel"
+                  name="leaderId"
+                  id="leaderId"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  placeholder="9567"
+                  required
+                />
+              </div>
+
+              <!-- Project Key -->
+              <div>
+                <label
+                  for="projecKey"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Project Key<span class="pl-1 text-red-600"
+                    >*</span
+                  ></label
+                >
+                <input
+                  required
+                  type="tel"
+                  id="projectKey"
+                  placeholder="Eg. AT (for Atlassian)"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                />
+              </div>
+
+              <!-- Project Description -->
+              <div class="sm:col-span-2">
+                <label
+                  for="description"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Description<span class="pl-1 text-red-600"
+                    >*</span
+                  ></label
+                >
+                <textarea
+                  required
+                  id="description"
+                  rows="3"
+                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  placeholder="Advancing Humanity into Cosmos"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- Project Avatar -->
+            <div>
+              <label
+                for="Avatar"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Avatar<span class="pl-1 text-red-600">*</span></label
+              >
+              <div class="flex items-center gap-2">
+                <img
+                  src="https://static.vecteezy.com/system/resources/previews/006/541/492/original/cartoon-rocket-isolated-on-a-white-background-rocket-icon-symbol-for-your-logo-app-and-website-design-illustration-free-vector.jpg"
+                  class="w-10 rounded-full object-contain object-center"
+                  alt=""
+                />
+                <input
+                  required
+                  id="avatar"
+                  type="file"
+                  class="cursor-pointer text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                />
+              </div>
+            </div>
+
+            <!-- Reset & Submit Button -->
+            <div class="w-full flex items-center justify-between">
+              <button
+                type="reset"
+                class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+              >
+                Clear
+              </button>
+              <button
+                type="submit"
+                class="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              >
+                <svg
+                  class="mr-1 -ml-1 w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Add new project
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
-    </section>
+      </div>
+    </div>
+
+    <!-- Team modal -->
+    <div
+      id="defaultModal1"
+      tabindex="-1"
+      aria-hidden="true"
+      class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full"
+    >
+      <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <!-- Modal content -->
+        <div
+          class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5"
+        >
+          <!-- Modal header -->
+          <div
+            class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600"
+          >
+            <h3
+              class="text-lg font-semibold text-gray-900 dark:text-white"
+            >
+              Create Team
+            </h3>
+            <button
+              type="button"
+              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+              data-modal-toggle="defaultModal1"
+            >
+              <svg
+                aria-hidden="true"
+                class="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <form action="#" class="space-y-4">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <!-- Team Name -->
+              <div class="sm:col-span-2">
+                <label
+                  for="name"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Team Name<span class="pl-1 text-red-600"
+                    >*</span
+                  ></label
+                >
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  placeholder="Red Wings"
+                  required
+                />
+              </div>
+
+              <!-- Associated Issue Source -->
+              <div>
+                <label
+                  for="issueSelect"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Associated Issue Source<span
+                    class="pl-1 text-red-600"
+                    >*</span
+                  ></label
+                >
+                <select
+                  required
+                  id="issueSelect"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                >
+                  <option selected="">Select Board or project</option>
+                  <option value="p1">Project 1</option>
+                  <option value="p2">Project 2</option>
+                  <option value="p3">Project 3</option>
+                  <option value="p4">Project 4</option>
+                </select>
+              </div>
+
+              <!-- Team Type -->
+              <div>
+                <label
+                  for="typeSelect"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Team Type<span class="pl-1 text-red-600"
+                    >*</span
+                  ></label
+                >
+                <select
+                  required
+                  id="typeSelect"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                >
+                  <option selected="">Select Team Type</option>
+                  <option value="sc">Scrum</option>
+                  <option value="bc">Bm</option>
+                  <option value="pc">Pcrum</option>
+                  <option value="fc">Fcrum</option>
+                </select>
+              </div>
+
+              <!-- Velocity -->
+              <div>
+                <label
+                  for="velocity"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Velocity (pts)<span class="pl-1 text-red-600"
+                    >*</span
+                  ></label
+                >
+                <input
+                  type="tel"
+                  name="velocity"
+                  id="velocity"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  placeholder="30"
+                  required
+                />
+              </div>
+
+              <!-- Iteration Length -->
+              <div>
+                <label
+                  for="iteration"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Iteration Length (weeks)<span
+                    class="pl-1 text-red-600"
+                    >*</span
+                  ></label
+                >
+                <input
+                  required
+                  type="tel"
+                  id="iteration"
+                  placeholder="2"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                />
+              </div>
+
+              <!-- Team Members -->
+              <div class="sm:col-span-2">
+                <label
+                  for="members"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Team Name<span class="pl-1 text-red-600"
+                    >*</span
+                  ></label
+                >
+                <input
+                  type="number"
+                  name="members"
+                  id="members"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  placeholder="Enter the No. of Team members"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- Reset & Submit Button -->
+            <div class="w-full flex items-center justify-between">
+              <button
+                type="reset"
+                class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+              >
+                Clear
+              </button>
+              <button
+                type="submit"
+                class="text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              >
+                <svg
+                  class="mr-1 -ml-1 w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Add new project
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

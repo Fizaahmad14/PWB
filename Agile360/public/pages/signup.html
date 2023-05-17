@@ -12,8 +12,54 @@
       href="./img/logo.ico"
       type="image/x-icon"
     />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <!-- CDNs -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"
+    ></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: "#f0fdf4",
+                100: "#dcfce7",
+                200: "#bbf7d0",
+                300: "#86efac",
+                400: "#4ade80",
+                500: "#22c55e",
+                600: "#16a34a",
+                700: "#15803d",
+                800: "#166534",
+                900: "#14532d",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <script>
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+    <script defer src="./scripts/darkMode.js"></script>
     <title>SignUp</title>
   </head>
   <body
@@ -37,7 +83,7 @@
     </div>
     <section class="grid place-items-center">
       <div class="flex justify-center items-center gap-3 py-10">
-        <a href="./index.html">
+        <a href="signup.html">
           <img src="./img/logo.ico" class="w-16" alt="" />
         </a>
 
@@ -46,9 +92,8 @@
         </h1>
       </div>
       <form
-        action="/signup.html"
+        action="./signup.html"
         method = "POST"
-        id = "signup-form"
         class="sm:w-1/2 md:w-[35%] bg-white/50 w-4/5 rounded-md p-6 mb-10 shadow-lg shadow-gray-500/50"
       >
         <h2 class="py-3 text-center text-lg font-bold text-gray-800">
@@ -108,7 +153,7 @@
                 Email<span class="pl-1 text-red-600">*</span>
               </p>
               <input
-                required              
+                required
                 id="email"
                 name="email"
                 type="email"
@@ -137,13 +182,28 @@
               ><p class="text-sm text-gray-600">
                 Role<span class="pl-1 text-red-600">*</span>
               </p>
-              <input
-                required
-                id="Role"
-                name="role"
-                type="text"
+              <select
                 class="rounded-md px-2 py-1 text-sm text-green-800 placeholder:text-xs placeholder:text-gray-400 focus:border-none focus:outline-none"
-            /></label>
+                name="role"
+                id="issue"
+              >
+                <option class="text-green-800" value="">
+                  Choose your Role
+                </option>
+                <option class="text-green-800" value="Administrator">
+                  Administrator
+                </option>
+                <option class="text-green-800" value="Project Manager">
+                  Project Manager
+                </option>
+                <option class="text-green-800" value="Developer">
+                  Developer
+                </option>
+                <option class="text-green-800" value="Customer">
+                  Customer
+                </option>
+              </select></label
+            >
           </div>
 
           <!-- Submit Button   -->
