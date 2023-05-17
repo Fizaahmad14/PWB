@@ -46,40 +46,29 @@ app.post('/signup.html', function (req, res) {
       role = 3;
     else if (role === 'Customer')
       role = 4;
-      
-    let sql = `INSERT INTO User (username, email, password, role_id, first_name, last_name) VALUES ("${username}", "${email}", "${password}",${role}, "${firstName}","${lastName}")`
-    connection.query(sql, function (err, result) {
-      if (err) throw err
-      console.log('Row has been updated')
-      res.redirect('/dashboard.html')
-    })
-})
+
+    let userSql = `INSERT INTO User (username, email, password, role_id, first_name, last_name) VALUES (?, ?, ?, ?, ?, ?)`;
+    let userValues = [username, email, password, role, firstName, lastName];
+    
+    connection.query(userSql, userValues, function (err, result) {
+        if (err) throw err;
+    
+        let userID = result.insertId; // Get the auto-generated user_id from the User table
+    
+        let accountSql = `INSERT INTO User_account (user_id, email, password) VALUES (?, ?, ?)`;
+        let accountValues = [userID, email, password];
+    
+        connection.query(accountSql, accountValues, function (err, result) {
+          if (err) throw err;
+          console.log('User and Account data have been inserted');
+          res.redirect('/login.html');
+        });
+    });
+});
 app.use(express.static('public/pages'));
 
 app.listen(3001, () => {
   console.log('Server listening on port 3001');
 });
-
-
-
-// app.post('/signup.html', function (req, res) {
-//     let email = req.body.email
-//     let password = req.body.password
-//     let sql1 = `INSERT INTO User (username, email, password, firstname, lastname) VALUES ("${username}", "${email}", "${password}", "${firstname}","${lastname}")`
-//     connection.query(sql1, function (err, result) {
-//       if (err) throw err
-//       console.log('Row has been updated')
-//       req.flash('success', 'Data stored!')
-//       res.redirect('/')
-//     })
-
-//     let sql2 = `INSERT INTO User_account (email, password) VALUES ("${email}", "${password}")`
-//     connection.query(sql2, function (err, result) {
-//       if (err) throw err
-//       console.log('Row has been updated')
-//       req.flash('success', 'Data stored!')
-//       res.redirect('/')
-//     })
-// })
 
 
